@@ -1,4 +1,4 @@
-name: test
+﻿name: test
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,9 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install lint deps
-        run: npm install --no-save eslint@latest
+      - name: Install dependencies
+        run: npm ci
 
       - name: Lint
         run: npm run lint
