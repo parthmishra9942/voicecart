@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="description" content="VoiceCart — a private, voice-first AI shopping assistant." />
+  <meta name="color-scheme" content="dark" />
+  <title>VoiceCart — AI Shopping Assistant</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css?v=500" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <div id="errorBox" class="error-box" hidden></div>
+
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-mark">V</div>
+      <div><h1 class="brand">VoiceCart</h1><span class="brand-sub">PRIVATE AI SHOPPING</span></div>
+    </div>
+    <div class="top-actions">
+      <span class="ai-status"><i></i> AI READY</span>
+      <div class="lang-wrap">
+        <button id="langLabel" class="lang-open" aria-haspopup="true">Voice: English ▾</button>
+        <div id="langMenu" class="lang-menu hidden">
+          <button data-lang="en">English</button><button data-lang="hi">हिंदी</button><button data-lang="es">Español</button><button data-lang="fr">Français</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">YOUR LOCAL SHOPPING COPILOT</span>
+      <h2>Shop smarter.<br><span>Just say it.</span></h2>
+      <p>Speak naturally, search products, build your list and let VoiceCart handle the boring parts.</p>
+    </div>
+    <div class="hero-mic-wrap">
+      <div class="mic-ring"></div>
+      <button id="voiceToggle" class="mic" aria-label="Start listening"><span class="mic-ico">🎙</span></button>
+      <small>Tap to speak</small>
+    </div>
+  </section>
+
+  <section id="listenHud" class="listen-hud hidden">
+    <div class="listen-card"><div class="live-dot"></div><div class="bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><strong id="listenStatus">Listening…</strong><p id="interim" class="interim"></p><button id="stopListen" class="stop-btn">Stop</button></div>
+  </section>
+
+  <div class="last-row"><span id="lastRecognized" aria-live="polite">Try: “add two packets of milk”</span></div>
+
+  <main class="layout">
+    <section class="panel suggestions-panel">
+      <div class="panel-head"><div><span class="section-kicker">AI PICKS</span><h2>Smart suggestions</h2></div><button id="voiceOnlyBtn" class="pill">🔊 Voice-only <span class="sw"></span></button></div>
+      <div id="suggestions" class="suggestions"></div>
+    </section>
+
+    <section class="panel search-panel-wrap">
+      <div class="panel-head"><div><span class="section-kicker">DISCOVER</span><h2>Search products</h2></div><span class="search-hint">semantic + fuzzy</span></div>
+      <div id="searchPanel" class="search-panel"><div class="search-input-wrap"><span>⌕</span><input id="searchBox" placeholder="Try “detergent under 5” or “toothpaste”…" aria-label="Search products" /></div><div id="searchResults" class="search-results"></div></div>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="panel-head"><div><span class="section-kicker">YOUR BASKET</span><h2>My list <span id="itemCount" class="count-pill">0 items</span></h2></div><div class="list-actions"><button id="clearDone" class="ghost">✓ Done</button><button id="clearAll" class="ghost danger">Clear all</button></div></div>
+      <div id="listContainer" class="list"></div>
+    </section>
+  </main>
+
+  <div id="textBox" class="text-box"><div class="composer"><span class="composer-icon">✦</span><input id="textInput" placeholder="Ask VoiceCart… e.g. “add 2 bottles of water”" aria-label="Command" /><button id="sendBtn" class="send" aria-label="Send">➤</button></div></div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="js/data.js?v=500"></script>
+  <script src="js/nlp.js?v=500"></script>
+  <script src="js/speech.js?v=500"></script>
+  <script src="js/store.js?v=500"></script>
+  <script src="js/suggestions.js?v=500"></script>
+  <script src="js/ml.js?v=500"></script>
+  <script src="js/app.js?v=500"></script>
+  <script>
+    (function(){
+      const start=()=>{ if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=500').catch(console.error); };
+      if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();
+      const stop=document.getElementById('stopListen'); if(stop) stop.onclick=()=>{ const b=document.getElementById('voiceToggle'); if(b) b.click(); };
+    })();
+  </script>
+</body>
+</html>
