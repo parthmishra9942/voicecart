@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-parthh.runs--on.dev-0284c7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://parthh.runs-on.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![NLU: On--Device](https://img.shields.io/badge/NLU-100%25%20On--Device-10b981?style=for-the-badge)](https://github.com/parthmishra9942/voicecart)
 [![Platform: PWA](https://img.shields.io/badge/Platform-Progressive%20Web%20App-38bdf8?style=for-the-badge&logo=pwa)](https://github.com/parthmishra9942/voicecart)
@@ -123,7 +124,7 @@ npm run lint    # ESLint validation across js/ and tests/
 
 **Parth Mishra**  
 - GitHub: [@parthmishra9942](https://github.com/parthmishra9942)  
-- Portfolio: [ai-portfolio-beige-xi.vercel.app](https://ai-portfolio-beige-xi.vercel.app/)  
+- Portfolio: [parthh.runs-on.dev](https://parthh.runs-on.dev)  
 - LinkedIn: [linkedin.com/in/parth-mishra-4b7578242](https://linkedin.com/in/parth-mishra-4b7578242)
 
 ---
