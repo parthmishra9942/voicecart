@@ -1,4 +1,4 @@
-(function(){
+(function () {
 /* =========================================================================
  * data.js — Knowledge Base for VoiceCart
  * This module is the "brains" behind the smart features — a curated,
@@ -269,7 +269,7 @@ const QUANTITY_WORDS = {
   'five': 5, '5': 5, 'six': 6, '6': 6, 'seven': 7, '7': 7, 'eight': 8, '8': 8,
   'nine': 9, '9': 9, 'ten': 10, '10': 10, 'a dozen': 12, 'dozen': 12, 'half': 0.5,
 };
-const UNIT_WORDS = ['packets','packet','bottles','bottle','loaves','loaf','cups','cup','boxes','box',
+const UNIT_WORDS = ['bottles','bottle','loaves','loaf','cups','cup','boxes','box',
   'bags','bag','liters','liter','litres','litre','kilos','kilo','kg','grams','gram','g'];
 
 /* -------------------------------------------------------------------------
@@ -284,16 +284,15 @@ const STOPWORDS = new Set([
 /* -------------------------------------------------------------------------
  * Export: work in the browser (window.VOICE_DATA) and in Node tests.
  * ----------------------------------------------------------------------- */
-if (typeof window !== 'undefined' && window) {
-  window.VOICE_DATA = {
-    PRODUCTS, ALIAS_MAP, BRANDS_BY_TYPE, PRICE_RANGES, SUBSTITUTES,
-    SEASONAL, INTENT_PATTERNS, INTENT_EXAMPLES, QUANTITY_WORDS, UNIT_WORDS, STOPWORDS,
-  };
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
     PRODUCTS, ALIAS_MAP, BRANDS_BY_TYPE, PRICE_RANGES, SUBSTITUTES,
     SEASONAL, INTENT_PATTERNS, INTENT_EXAMPLES, QUANTITY_WORDS, UNIT_WORDS, STOPWORDS,
   };
+} else if (typeof window !== 'undefined' && window) {
+  window.VOICE_DATA = {
+    PRODUCTS, ALIAS_MAP, BRANDS_BY_TYPE, PRICE_RANGES, SUBSTITUTES,
+    SEASONAL, INTENT_PATTERNS, INTENT_EXAMPLES, QUANTITY_WORDS, UNIT_WORDS, STOPWORDS,
+  };
 }
-
 })();

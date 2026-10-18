@@ -1,7 +1,7 @@
 {
   "name": "voicecart",
-  "version": "5.0.0",
-  "description": "VoiceCart — local-first AI shopping assistant",
+  "version": "1.1.0",
+  "description": "A privacy-first, voice-first shopping list with smart suggestions — PWA, zero backend.",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -10,11 +10,9 @@
     "test:smoke": "node tests/frontend.smoke.js",
     "lint": "eslint js tests scripts",
     "icons": "node scripts/gen-icons.js",
-    "serve": "python -m http.server 5000",
-    "dev": "npx --yes http-server . -p 8080",
-    "start": "npx --yes http-server . -p 8080"
+    "serve": "python -m http.server 5000"
   },
   "devDependencies": {
-    "eslint": "^8.57.1"
+    "eslint": "^8.0.0"
   }
 }

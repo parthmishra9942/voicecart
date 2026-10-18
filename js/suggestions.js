@@ -1,4 +1,4 @@
-(function(){
+(function () {
 /* =========================================================================
  * suggestions.js — Smart Suggestion engine
  * -------------------------------------------------------------------------
@@ -85,10 +85,9 @@ function recommend({ items = [], history = {}, month = new Date().getMonth() + 1
 }
 
 /* -- module --------------------------------------------------------------- */
-if (typeof window !== 'undefined' && window) {
-  window.VOICESUGGEST = { recommend, reorderSuggestions, seasonalSuggestions, substituteFor };
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = { recommend, reorderSuggestions, seasonalSuggestions, substituteFor };
+} else if (typeof window !== 'undefined' && window) {
+  window.VOICESUGGEST = { recommend, reorderSuggestions, seasonalSuggestions, substituteFor };
 }
-
 })();

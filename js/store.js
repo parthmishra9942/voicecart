@@ -1,4 +1,4 @@
-(function(){
+(function () {
 /* =========================================================================
  * store.js — Shopping list state + persistence + purchase history
  * -------------------------------------------------------------------------
@@ -163,18 +163,17 @@ function getByCategory() {
 function getHistory() { return history; }
 function subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); }
 
-if (typeof window !== 'undefined' && window) {
-  window.VOICESTORE = {
-    addItem, removeItem, updateQty, toggleDone, clearDone, clearAll,
-    getItems, getByCategory, getHistory, subscribe,
-    CATEGORY_LABELS, CATEGORY_ORDER, categorize,
-  };
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     addItem, removeItem, updateQty, toggleDone, clearDone, clearAll,
     getItems, getByCategory, getHistory, subscribe,
     CATEGORY_LABELS, CATEGORY_ORDER, categorize,
   };
+} else if (typeof window !== 'undefined' && window) {
+  window.VOICESTORE = {
+    addItem, removeItem, updateQty, toggleDone, clearDone, clearAll,
+    getItems, getByCategory, getHistory, subscribe,
+    CATEGORY_LABELS, CATEGORY_ORDER, categorize,
+  };
 }
-
 })();

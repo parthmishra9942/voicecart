@@ -1,4 +1,4 @@
-(function(){
+(function () {
 /* =========================================================================
  * ml.js — On-device "real" ML engine for VoiceCart
  * -------------------------------------------------------------------------
@@ -294,10 +294,12 @@ const api = {
   findSubstitutes, search, forecastReplenishment, useNeuralEmbedder,
   _internal: { buildTfIdf, tfidfVec, cosDense, denseFromText, productVec, round },
 };
-if (typeof window !== 'undefined' && window) {
-  window.VOICEML = api;
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = api;
+} else if (typeof window !== 'undefined' && window) {
+  window.VOICEML = api;
 }
+
+
 
 })();

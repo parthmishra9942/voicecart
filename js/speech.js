@@ -1,4 +1,4 @@
-(function(){
+(function () {
 /* =========================================================================
  * speech.js — Speech Recognition + Text-To-Speech wrappers
  * -------------------------------------------------------------------------
@@ -109,10 +109,9 @@ function speak(text, opts) {
 }
 
 /* -- expose for browser ------------------------------------------------ */
-if (typeof window !== 'undefined' && window) {
-  window.VOICESPEECH = { isSpeechSupported, LANG_CODES, SpeechRecorder, speak };
-} else if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = { isSpeechSupported, LANG_CODES, SpeechRecorder, speak };
+} else if (typeof window !== 'undefined' && window) {
+  window.VOICESPEECH = { isSpeechSupported, LANG_CODES, SpeechRecorder, speak };
 }
-
 })();
