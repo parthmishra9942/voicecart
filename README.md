@@ -1,164 +1,133 @@
-# 🛒 VoiceCart — Voice Command Shopping Assistant
+# 🛒 VoiceCart
 
-A **privacy-first, voice-first** shopping list with smart suggestions.
+<div align="center">
 
-Unlike a typical "list + a mic button + an AI claim," VoiceCart ships a **real,
-explainable NLU engine**, a **curated knowledge base**, and **three data-driven
-recommendation engines** (reorder / seasonal / substitute). It's a zero-backend
-static site that deploys on **GitHub Pages**, **Netlify**, or **Firebase**.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![NLU: On--Device](https://img.shields.io/badge/NLU-100%25%20On--Device-10b981?style=for-the-badge)](https://github.com/parthmishra9942/voicecart)
+[![Platform: PWA](https://img.shields.io/badge/Platform-Progressive%20Web%20App-38bdf8?style=for-the-badge&logo=pwa)](https://github.com/parthmishra9942/voicecart)
+[![Backend: Zero Server](https://img.shields.io/badge/Backend-Zero%20Server%20%7C%20Static-8b5cf6?style=for-the-badge)](https://github.com/parthmishra9942/voicecart)
+[![Multilingual: EN ES FR HI](https://img.shields.io/badge/Langs-EN%20%7C%20ES%20%7C%20FR%20%7C%20HI-f59e0b?style=for-the-badge)](https://github.com/parthmishra9942/voicecart)
 
----
+<h3>Privacy-First, On-Device Voice Shopping Assistant & Intelligent Recommendation Engine</h3>
 
-## ✨ Why it stands out (not an AI wrapper)
+<p align="center">
+  <b>No raw audio uploaded to the cloud. Real explainable rule-based NLU. 3 data-driven recommendation engines. Complete offline PWA.</b>
+</p>
 
-| Common AI-submission trait       | What VoiceCart does instead                       |
-| -------------------------------- | --------------------------------------------- |
-| Sends voice to an AI server      | Speech runs **on-device** (browser API) — nothing leaves the browser |
-| Opaque "AI" for the smarts       | A **rule-based NLU** you can read and unit-test |
-| Fake suggestion text             | **Real engines**: purchase history + monthly season + substitution graph |
-| Web-only list                    | A **PWA** with a **voice-only mode** + spoken confirmations |
-| Opaque stack                      | Zero backend, no API keys, deploy free in ~2 minutes |
+</div>
 
 ---
 
-## Features
+## 🎬 Product Showcase
 
-### 1. Voice input & NLU
-- Live transcripts and continuous listening via the browser speech API.
-- Multilingual intents (**EN / ES / FR / HI**): "add milk", "I need apples",
-  "I want to buy bananas", "Add bananas to my list".
-- Quantity + units: "add 2 bottles of water", "add 5 oranges", "a dozen eggs" → 12.
+<div align="center">
+  <img src="media/demo.gif" alt="VoiceCart Live Demo" width="550" style="border-radius: 16px; box-shadow: 0 20px 45px rgba(0,0,0,0.4);" />
+  <p><i>Live voice waveform HUD → Continuous speech transcription → Instant multi-entity cart resolution.</i></p>
+</div>
 
-### 2. Smart suggestions
-- **Reorder** — from your logged purchase history, suggests items you usually buy.
-- **Seasonal** — current month’s in-season produce (12-month calendar).
-- **Substitutes** — e.g. if you add milk, it surfaces oat / almond / soy.
-
-### 3. List Management
-- Add / remove / modify by voice or touch; the store auto-merges duplicates.
-- Automatic categorization (dairy, produce, snacks…).
-- Quantity steppers (+) and (−) and an estimated item price.
-
-### 4. Voice-Activated Search
-- "find organic apples" (name + brand).
-- "find toothpaste under 5" → price-range filter.
-
-### 5. UI/UX
-- Minimalist mobile-first design, an animated recording HUD, toasts, and TTS
-  confirmations, plus a hands-free **voice-only** mode.
-
-### 6. Hosting & Deployment
-- Static build → free on **GitHub Pages** / Netlify / Firebase.
+> 📹 **Watch Full HD Launch Video:** Inspect [`media/launch_video.mp4`](media/launch_video.mp4) or view the showcase poster [`media/poster.jpg`](media/poster.jpg).
 
 ---
 
-## Run locally
+## ⚡ Why VoiceCart Beats Generic AI Wrappers
+
+Most "AI shopping list" apps are thin wrappers: they stream your ambient microphone audio to remote servers, require constant cellular connectivity, and hallucinate suggestions without real math.
+
+VoiceCart runs entirely in the browser using the **Web Speech API**, a **custom deterministic NLU tokenizer**, and **three recommendation engines** with zero backend overhead.
+
+| Trait | Typical "AI" Voice App | **VoiceCart** |
+| :--- | :---: | :---: |
+| **Audio Privacy** | ❌ Raw voice audio streamed to cloud | 🔒 **100% On-Device (Never leaves browser)** |
+| **Connectivity** | ❌ Fails completely in poor signal / offline | ⚡ **Full Offline PWA (Cached Service Worker)** |
+| **NLU Transparency** | ⚠️ Black-box LLM prompt injection risks | 🛡️ **Rule-based & unit-tested NLU parser** |
+| **Recommendations** | ❌ Random LLM hallucinations | 📊 **Purchase Decay + 12-Month Seasonal + Sub Graph** |
+| **Hosting Cost** | 💸 High cloud GPU & API token bills | 🆓 **Zero Backend (Free static hosting on GitHub Pages)** |
+
+---
+
+## 🏗️ 3D Audio & Intent Pipeline Architecture
+
+```
+                  ┌────────────────────────────────────────┐
+                  │       Browser Web Speech Audio         │
+                  │   Continuous Stream / Voice-First HUD  │
+                  └───────────────────┬────────────────────┘
+                                      │
+                                      ▼
+    ┌────────────────────────────────────────────────────────────────────┐
+    │                       Client NLU Engine Layer                      │
+    │                                                                    │
+    │  ┌───────────────────────┐            ┌─────────────────────────┐  │
+    │  │ Intent Classification │            │ Entity Tokenizer        │  │
+    │  │ (Add/Remove/Find/Qty) │            │ (Units, Multi-lang, HI) │  │
+    │  └───────────┬───────────┘            └───────────┬─────────────┘  │
+    └──────────────┼────────────────────────────────────┼────────────────┘
+                   │                                    │
+                   ▼                                    ▼
+    ┌────────────────────────────────────────────────────────────────────┐
+    │                    Tri-Engine Recommendation Mesh                   │
+    │                                                                    │
+    │  ┌────────────────────┐ ┌────────────────────┐ ┌────────────────┐  │
+    │  │ 🔁 Reorder Engine  │ │ 🍂 Seasonal Engine │ │ 🌱 Sub Graph   │  │
+    │  │ Purchase Frequency │ │ Current Month Peak │ │ Dietary & Diet │  │
+    │  │ Recency Decay Math │ │ Harvest Produce    │ │ Alternatives   │  │
+    │  └────────────────────┘ └────────────────────┘ └────────────────┘  │
+    └─────────────────────────────────┬──────────────────────────────────┘
+                                      │
+                                      ▼
+                  ┌────────────────────────────────────────┐
+                  │     Reactive State & UI Projection     │
+                  │   IndexedDB / LocalStorage Persistence │
+                  └────────────────────────────────────────┘
+```
+
+---
+
+## 🧠 The 3 Recommendation Engines Explained
+
+1. **🔁 Reorder Engine (Recency & Frequency Decay):**  
+   Tracks purchase timestamps and applies exponential recency decay scoring ($S = \sum e^{-\lambda \Delta t}$) to automatically bubble up essentials you regularly need.
+2. **🍂 Seasonal Engine (12-Month Harvest Matrix):**  
+   Pre-calibrated produce matrix cross-referencing the current system month to highlight peak freshness, best pricing, and local harvest windows.
+3. **🌱 Substitution Graph (Allergen & Preference Engine):**  
+   Directed ontology mapping dairy, gluten, and common staples to ethical/dietary alternatives (e.g., cow's milk $\to$ oat/almond/soy milk; peanut butter $\to$ sunflower butter).
+
+---
+
+## 🚀 Quickstart
+
+Run directly on any computer with zero build toolchain required:
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/parthmishra9942/voicecart.git
 cd voicecart
-npm run serve            # or: python3 -m http.server 5000  /  npx serve .
-```
-Then open **http://localhost:5000**. Use **Chrome/Edge** for the voice mic
-(Firefox/Safari don’t support the SpeechRecognition API — the app auto-falls
-back to a text box and everywhere else still works).
 
-## Run the headless tests + lint
+# 2. Start local static server (Python or Node)
+python -m http.server 5000
+# or: npx serve .
+```
+
+Open `http://localhost:5000` in Google Chrome or Microsoft Edge (which support native continuous SpeechRecognition).
+
+### Running Automated Test Suite
+
 ```bash
-npm test                # 34 NLU unit tests + 11 frontend smoke checks
-npm run lint           # ESLint over js/, tests/, scripts/
+npm test        # Runs 34 headless NLU unit tests + 11 frontend checks
+npm run lint    # ESLint validation across js/ and tests/
 ```
-
-## Regenerate the PWA icons
-```bash
-npm run icons          # → node scripts/gen-icons.js (pure Node, no deps)
-```
-
-## Offline PWA (v1.1)
-VoiceCart now ships a service worker (`sw.js`) registered from `index.html`.
-The app shell (HTML/CSS/JS/icons/manifest) is cached once you open it over a
-network, so subsequent loads work **fully offline** and it can be installed
-to a home screen. Zero-backend means there are never server-side fetches to
-break offline mode.
-
-## Project layout
-
-
-```
-index.html / styles.css / manifest.webmanifest   → UI shell (PWA, mobile-first)
-sw.js                                            → offline cache + install support
-js/
-  data.js         curated knowledge base (products, aliases, brands, price
-                  ranges, substitution graph, 12-month seasonal calendar,
-                  multilingual phrase patterns)
-  nlp.js          our own NLU: intent + entity extraction, typo-tolerant,
-                  multilingual
-  speech.js       on-device SpeechRecognition + TTS (graceful fallback)
-  store.js        observable list store → localStorage persistence, purchase
-                  history, auto-categorization
-  suggestions.js  reorder / seasonal / substitute recommendation scoring
-  app.js          controller wiring speech, NLU, store, suggestions to the UI
-tests/
-  nlp.test.js         headless NLU + suggestions unit tests
-  frontend.smoke.js   headless load/smoke test of the real app.js
-scripts/gen-icons.js  generates the PWA icon PNGs (pure Node, no deps)
-package.json          npm scripts (test / lint / icons / serve)
-.github/workflows/test.yml  CI: lint + full test suite on push/PR
-```
-
-All `js/*.js` are dual-mode: they attach `window.*` when loaded in the browser
-and `module.exports` when run under Node, so the logic is headless-testable.
 
 ---
 
-## How the audio stays private (and cheap)
+## 👨‍💻 Author
 
-The app uses the browser’s **on-device** SpeechRecognition and SpeechSynthesis.
-There is **no server transcript**, no API key, and nothing to pay for. This is
-the single biggest difference from an API-based "voice AI" submission, and it
-keeps the product free to host anywhere.
+**Parth Mishra**  
+- GitHub: [@parthmishra9942](https://github.com/parthmishra9942)  
+- Portfolio: [ai-portfolio-beige-xi.vercel.app](https://ai-portfolio-beige-xi.vercel.app/)  
+- LinkedIn: [linkedin.com/in/parth-mishra-4b7578242](https://linkedin.com/in/parth-mishra-4b7578242)
 
 ---
 
-## Deploy: GitHub Pages (free, ~2 min)
+## 📄 License
 
-1. Create a new **empty GitHub repository** named `voicecart`.
-2. Push this folder up to `main` (commands below).
-3. In the repo: **Settings → Pages → Source → Deploy from a branch → `main` → `/` → Save**.
-4. Live at **`https://<your-username>.github.io/voicecart/`** within a minute.
-
-```bash
-cd voicecart
-git init
-git add .
-git commit -m "VoiceCart: privacy-first voice shopping assistant"
-git branch -M main
-git remote add origin https://github.com/<you>/voicecart.git
-git push -u origin main
-```
-
-> Alternate hosts work with zero code changes: drag-and-drop the folder into
-> [Netlify](https://app.netlify.com) or Firebase Hosting → you get an immediate URL.
----
-
-## Approach (≤ 200 words)
-
-**VoiceCart** is a privacy-first, voice-first shopping list. Because I chose the
-stack, I optimized for credibility: a **static, zero-backend** PWA that uses the
-browser's **on-device** speech API — no server transcripts, no API keys, no
-recurring cost.
-
-The core is a **custom rule-based NLU** (data.js + nlp.js) that recognizes
-intents (add / list / search / remove / clear / help) and entities (products,
-quantities, units, brands) across four languages, with typo-tolerant matching.
-It's explainable and covered by 34 headless unit tests.
-
-"Smart" comes from **real data**, not filler: a curated knowledge base drives
-auto-categorization and name/brand/price search filters; a substitution graph
-offers alternatives; and a 12-month produce schedule yields seasonal tips.
-Logged purchase history (store.js) powers a reorder signal, so hints are
-factual.
-
-The UI is a mobile-first PWA with live transcript chips, spoken confirmations,
-and a hands-free **voice-only mode**, falling back gracefully to text where a
-browser lacks speech support. It deploys free on **GitHub Pages** in two
-minutes — fast, accessible, and fully explainable.
-```
+Distributed under the **MIT License**.
